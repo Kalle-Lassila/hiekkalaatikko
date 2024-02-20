@@ -16,7 +16,7 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SD
 // U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);    //Low spped I2C
 
 void setup(void) {
-    Serial.begin(9600);
+    Serial.begin(115200);
     Wire.begin();
     DHT.begin();
     
@@ -28,17 +28,31 @@ void loop(void) {
     int status = DHT.read();
     float humidity = DHT.getHumidity();
     float temperature = DHT.getTemperature();
+
     Serial.print(humidity, 1);
     Serial.print("\n");
     Serial.print(temperature, 1);
     Serial.print("\n");
+
     u8g2.clearBuffer();                   // clear the internal memory
     u8g2.setFont(u8g2_font_ncenB08_tr);   // choose a suitable font
-    //u8g2.drawStr(0,10,"Hello World!");    // write something to the internal memory
+
     char temp_str[6];
+    char hum_str[6];
     dtostrf(temperature, 4, 1, temp_str);
-    u8g2.drawStr(0, 10, temp_str);
-    u8g2.sendBuffer();                    // transfer internal memory to the display
+    dtostrf(humidity, 4, 1, hum_str);
+
+    char temperature_line[30];
+    char humidity_line[30];
+    char bufferi[15];
+    snprintf(temperature_line, 30, "Temperature: %s", temp_str);
+    //snprintf(humidity_line, 30, "Humidity: %s", hum_str);
+    Serial.print(humidity_line);
+
+    
+    //u8g2.drawStr(0, 10, temperature_line);
+    //u8g2.drawStr(0, 20, humidity_line);
+    u8g2.sendBuffer();
 
     switch (status)
     {
@@ -68,5 +82,5 @@ void loop(void) {
         break;
     }
     Serial.print("\n");
-    delay(1000);  
+    delay(5000);  
     }
