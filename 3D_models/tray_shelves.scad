@@ -1,4 +1,4 @@
-screw_mount = true; //Set true to add mount points, false for no mount points.
+screw_mount = false; //Set true to add mount points, false for no mount points.
 shelf_depth = 200;
 shelf_heigth = 57;
 support_tube_radius = 6.25;
