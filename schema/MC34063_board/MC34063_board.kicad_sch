@@ -574,12 +574,11 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Diode:1N5819"
+		(symbol "Diode:1N4001"
 			(pin_numbers
 				(hide yes)
 			)
 			(pin_names
-				(offset 1.016)
 				(hide yes)
 			)
 			(exclude_from_sim no)
@@ -593,7 +592,7 @@
 					)
 				)
 			)
-			(property "Value" "1N5819"
+			(property "Value" "1N4001"
 				(at 0 -2.54 0)
 				(effects
 					(font
@@ -602,15 +601,6 @@
 				)
 			)
 			(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-				(at 0 -4.445 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "http://www.vishay.com/docs/88525/1n5817.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -619,7 +609,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "40V 1A Schottky Barrier Rectifier Diode, DO-41"
+			(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -628,7 +618,34 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "diode Schottky"
+			(property "Description" "50V 1A General Purpose Rectifier Diode, DO-41"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode"
 				(at 0 0 0)
 				(effects
 					(font
@@ -646,10 +663,10 @@
 					(hide yes)
 				)
 			)
-			(symbol "1N5819_0_1"
+			(symbol "1N4001_0_1"
 				(polyline
 					(pts
-						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+						(xy -1.27 1.27) (xy -1.27 -1.27)
 					)
 					(stroke
 						(width 0.254)
@@ -684,7 +701,7 @@
 					)
 				)
 			)
-			(symbol "1N5819_1_1"
+			(symbol "1N4001_1_1"
 				(pin passive line
 					(at -3.81 0 0)
 					(length 2.54)
@@ -953,33 +970,32 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+15V"
-			(power)
+		(symbol "Simulation_SPICE:VDC"
 			(pin_numbers
 				(hide yes)
 			)
 			(pin_names
-				(offset 0)
-				(hide yes)
+				(offset 0.0254)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
+			(property "Reference" "V"
+				(at 2.54 2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
+					(justify left)
 				)
 			)
-			(property "Value" "+15V"
-				(at 0 3.556 0)
+			(property "Value" "1"
+				(at 2.54 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
 			(property "Footprint" ""
@@ -991,7 +1007,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1000,7 +1016,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+15V\""
+			(property "Description" "Voltage source, DC"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1009,7 +1025,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "global power"
+			(property "Sim.Pins" "1=+ 2=-"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1018,10 +1034,38 @@
 					(hide yes)
 				)
 			)
-			(symbol "+15V_0_1"
+			(property "Sim.Type" "DC"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "V"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "simulation"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "VDC_0_0"
 				(polyline
 					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
+						(xy -1.27 0.254) (xy 1.27 0.254)
 					)
 					(stroke
 						(width 0)
@@ -1033,7 +1077,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy -0.762 -0.254) (xy -1.27 -0.254)
 					)
 					(stroke
 						(width 0)
@@ -1045,7 +1089,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0.254 -0.254) (xy -0.254 -0.254)
 					)
 					(stroke
 						(width 0)
@@ -1055,11 +1099,44 @@
 						(type none)
 					)
 				)
+				(polyline
+					(pts
+						(xy 1.27 -0.254) (xy 0.762 -0.254)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(text "+"
+					(at 0 1.905 0)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
 			)
-			(symbol "+15V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
+			(symbol "VDC_0_1"
+				(circle
+					(center 0 0)
+					(radius 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "VDC_1_1"
+				(pin passive line
+					(at 0 5.08 270)
+					(length 2.54)
 					(name "~"
 						(effects
 							(font
@@ -1068,6 +1145,24 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -5.08 90)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1179,6 +1274,137 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:VCC"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "VCC"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"VCC\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "VCC_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "VCC_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(junction
+		(at 121.92 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0b033ed5-084a-415d-81d1-683f3400fb00")
 	)
 	(junction
 		(at 106.68 81.28)
@@ -1199,16 +1425,16 @@
 		(uuid "8028cd60-aa30-4caf-b31e-7504ab6e6c88")
 	)
 	(junction
+		(at 72.39 78.74)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a703107c-8512-4d62-841a-2bd160a1e203")
+	)
+	(junction
 		(at 134.62 105.41)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "acd5a408-c793-491e-b347-b3d01cabd05d")
-	)
-	(junction
-		(at 72.39 78.74)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bd3a4da5-1a11-4cfe-a69b-242e5bbacbfc")
 	)
 	(junction
 		(at 86.36 78.74)
@@ -1216,21 +1442,15 @@
 		(color 0 0 0 0)
 		(uuid "bf7d28a8-5d54-45a1-8ccf-973a38dd5464")
 	)
-	(junction
-		(at 121.92 88.9)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e84c33f0-c159-43db-b1b5-19bb6de9e899")
-	)
 	(wire
 		(pts
-			(xy 121.92 88.9) (xy 134.62 88.9)
+			(xy 72.39 76.2) (xy 72.39 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "29c189b1-c0de-463a-9e20-f1a944df1b6e")
+		(uuid "04d1cf37-e35c-4163-aa06-73211418339a")
 	)
 	(wire
 		(pts
@@ -1274,6 +1494,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.92 88.9) (xy 134.62 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64872b77-1799-4d64-b0bd-1ea346bbe471")
+	)
+	(wire
+		(pts
 			(xy 110.49 106.68) (xy 110.49 105.41)
 		)
 		(stroke
@@ -1284,13 +1514,13 @@
 	)
 	(wire
 		(pts
-			(xy 106.68 88.9) (xy 121.92 88.9)
+			(xy 72.39 87.63) (xy 72.39 86.36)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6e744f23-77da-4e1b-9f68-75067c4b752b")
+		(uuid "72edd0b6-2a2c-4fa5-bf35-772d415e1527")
 	)
 	(wire
 		(pts
@@ -1311,6 +1541,16 @@
 			(type default)
 		)
 		(uuid "8162b59c-a63a-42ae-bbcc-536464a14709")
+	)
+	(wire
+		(pts
+			(xy 106.68 88.9) (xy 121.92 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "853d1629-e067-45a0-b6ff-0a07a056387f")
 	)
 	(wire
 		(pts
@@ -1341,6 +1581,16 @@
 			(type default)
 		)
 		(uuid "b13e3551-01d7-44d0-8107-289a7b6d08ad")
+	)
+	(wire
+		(pts
+			(xy 134.62 105.41) (xy 142.24 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba55d56f-a9b5-4c31-a38b-39c35ff80bca")
 	)
 	(wire
 		(pts
@@ -1665,35 +1915,17 @@
 		)
 	)
 	(symbol
-		(lib_id "Diode:1N5819")
-		(at 121.92 92.71 270)
+		(lib_id "power:VCC")
+		(at 46.99 76.2 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "37f6177f-7c91-4a32-abaa-ec594807a5f3")
-		(property "Reference" "D1"
-			(at 124.46 91.1224 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1N5819"
-			(at 124.46 93.6624 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-			(at 117.475 92.71 0)
+		(uuid "3c1ee609-c218-48db-8d9e-604dc9dd2c8a")
+		(property "Reference" "#PWR010"
+			(at 46.99 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1701,8 +1933,16 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.vishay.com/docs/88525/1n5817.pdf"
-			(at 121.92 92.71 0)
+		(property "Value" "VCC"
+			(at 46.99 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 46.99 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1710,8 +1950,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "40V 1A Schottky Barrier Rectifier Diode, DO-41"
-			(at 121.92 92.71 0)
+		(property "Datasheet" ""
+			(at 46.99 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VCC\""
+			(at 46.99 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1720,15 +1969,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "70f9149e-9ccc-4597-96b6-99dee73fcac8")
-		)
-		(pin "2"
-			(uuid "fd4ac184-0c34-46bc-ba8e-7b07e1ac4bff")
+			(uuid "f87e2e27-fcb1-4222-b403-8cb56e4788c4")
 		)
 		(instances
 			(project ""
 				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
-					(reference "D1")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -1744,7 +1990,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3dfbd6b8-7e5a-4b8f-937a-ad2a79761353")
-		(property "Reference" "C3"
+		(property "Reference" "Co1"
 			(at 138.43 107.9499 0)
 			(effects
 				(font
@@ -1798,7 +2044,7 @@
 		(instances
 			(project ""
 				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
-					(reference "C3")
+					(reference "Co1")
 					(unit 1)
 				)
 			)
@@ -1873,6 +2119,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 146.05 105.41 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5ca1fadf-619c-4151-bdd5-5d28af4412c1")
+		(property "Reference" "Rl1"
+			(at 146.05 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "20"
+			(at 146.05 101.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 146.05 107.188 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 146.05 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 146.05 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "10f4f84a-1590-4677-b1e8-af6259b10b29")
+		)
+		(pin "2"
+			(uuid "0ff43dd6-2a9a-4cb2-b641-0c3b140cbe84")
+		)
+		(instances
+			(project ""
+				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
+					(reference "Rl1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Regulator_Switching:MC34063AP")
 		(at 96.52 83.82 0)
 		(unit 1)
@@ -1926,6 +2240,42 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Library" "tf34063.sub"
+			(at 96.52 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "tf34063"
+			(at 96.52 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 96.52 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=1 2=2 3=3 4=4 5=5 6=6 7=7 8=8"
+			(at 96.52 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "3"
 			(uuid "8c08458f-0a9f-4bd2-afd6-dc2240044c89")
 		)
@@ -1954,6 +2304,104 @@
 			(project ""
 				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
 					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Simulation_SPICE:VDC")
+		(at 46.99 81.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8cbe3fb8-686d-4d2c-a879-292d7c6b61ab")
+		(property "Reference" "V1"
+			(at 50.8 79.8801 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "12"
+			(at 50.8 82.4201 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 46.99 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for"
+			(at 46.99 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Voltage source, DC"
+			(at 46.99 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=+ 2=-"
+			(at 46.99 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" "DC"
+			(at 46.99 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "V"
+			(at 46.99 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "697574f0-ed00-4e3d-863c-b096078ecf26")
+		)
+		(pin "1"
+			(uuid "891a8627-05b8-4da7-a77d-065702cd8383")
+		)
+		(instances
+			(project ""
+				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
+					(reference "V1")
 					(unit 1)
 				)
 			)
@@ -2019,6 +2467,160 @@
 			(project ""
 				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
 					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 46.99 86.36 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b23c4cd9-2904-47d3-a7d7-5842fd02dc83")
+		(property "Reference" "#PWR08"
+			(at 46.99 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 46.99 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 46.99 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 46.99 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 46.99 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "903744d9-c5e6-4500-a121-0b2ad9a28e4d")
+		)
+		(instances
+			(project ""
+				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
+					(reference "#PWR08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4001")
+		(at 121.92 92.71 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b2da839b-0079-4975-8341-264f275298f2")
+		(property "Reference" "D1"
+			(at 124.46 91.4399 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1N4001"
+			(at 124.46 93.9799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+			(at 121.92 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
+			(at 121.92 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "50V 1A General Purpose Rectifier Diode, DO-41"
+			(at 121.92 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 121.92 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 121.92 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2a43611b-4623-48c0-9e3c-bc61e49a6c0e")
+		)
+		(pin "2"
+			(uuid "29d03bd8-5bfc-4ced-8467-56d4e6097020")
+		)
+		(instances
+			(project ""
+				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -2096,7 +2698,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 72.39 86.36 0)
+		(at 72.39 87.63 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2105,7 +2707,7 @@
 		(fields_autoplaced yes)
 		(uuid "b671383e-b140-4161-a7c0-5eac85121df9")
 		(property "Reference" "#PWR02"
-			(at 72.39 92.71 0)
+			(at 72.39 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2114,7 +2716,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 72.39 91.44 0)
+			(at 72.39 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2122,7 +2724,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 72.39 86.36 0)
+			(at 72.39 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2131,7 +2733,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 72.39 86.36 0)
+			(at 72.39 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2140,7 +2742,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 72.39 86.36 0)
+			(at 72.39 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2155,6 +2757,72 @@
 			(project ""
 				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
 					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 72.39 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c2cbdc90-f32d-4221-81f5-158e46413d06")
+		(property "Reference" "#PWR09"
+			(at 72.39 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VCC"
+			(at 72.39 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 72.39 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VCC\""
+			(at 72.39 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bc72a7eb-e348-4a31-a8d3-a66976a52a7e")
+		)
+		(instances
+			(project ""
+				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -2231,72 +2899,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+15V")
-		(at 72.39 78.74 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d30f7f88-b9db-441e-ad13-bfc8f12da6aa")
-		(property "Reference" "#PWR01"
-			(at 72.39 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+15V"
-			(at 72.39 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 72.39 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 72.39 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+15V\""
-			(at 72.39 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6b4819f2-2198-41cb-ae45-0fc7b997f086")
-		)
-		(instances
-			(project ""
-				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
-					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 95.25 66.04 90)
 		(unit 1)
@@ -2361,6 +2963,72 @@
 			(project ""
 				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
 					(reference "Rsc1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 149.86 105.41 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "df7d1d41-69b8-43b2-b868-5ca0a254e5b3")
+		(property "Reference" "#PWR01"
+			(at 149.86 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 149.86 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 149.86 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.86 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 149.86 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "155d4c3e-9562-40d5-baa7-b242a7c70dd5")
+		)
+		(instances
+			(project ""
+				(path "/63b2a672-2997-41fe-98e0-425a4af394cd"
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)

@@ -1,0 +1,125 @@
+.subckt tf34063 1 2 3 4 5 6 7 8
+
+***** Basic information: *****
+* MC34063 model, internal name: TF34063
+* Version 1.0, September 2025. This model is licenced under either the BSD 3-clause license, or under CC BY-SA 3.0 or 4.0. (c) 2025 Frantisek Stefanec (aka Tefa's electronics)
+* This model was developed because of bad performance and instability of various models found online.
+* This is a mostly behavioral model, but with many realistic aspects of pin-related circuits modeled.
+***** Pinout: *****
+* 1=switch collector, 2=switch emitter, 3=timing capacitor, 4=chip ground, 5=comparator input, 6=power input, 7=Ipk sense, 8=driver collector
+***** Additional information: *****
+* Several pin-related circuits are "shifted" to the global ground using VCVS, VCCS and other behavioral sources for simulation speed.
+* Chip GND doesn't have to be connected to circuit GND.
+* The model was mostly verified against various datasheets, several random physical chips and the TI SLVA252B note.
+* It is provided without any warranty, but should meet all major datasheet parameters. Voltage reference drift with temperature is not modeled.
+* Parts marked ...pin relate to pin parasitics and built-in diodes, the next letters after the first one denote the part of circuit the part is used in.
+* Package parasitic inductances are not included.
+
+***** Parameters *****
+.param tf34063_icharge=35u ; timing capacitor charge current ("boosted" Icharge will be 2x this)
+.param tf34063_idischarge=220u ; timing capacitor discharge current
+.param tf34063_post_comp_tau=50n ; post-input comparator RC circuit delay (internal behavioral modelling)
+.param tf34063_ipk_gain=50 ; internal IPK amplifier "gain", into tanh smoothing function
+.param tf34063_ipk_setpoint=0.32 ; internal IPK amplifier offset
+.param tf34063_ipk_gm=10m ; IPK amplifier clamped to 1 V -> gm to current source, by default max 10 mA Icharge boost on Ipk activation
+.param tf34063_iq=2m ; additional Vcc current draw
+.param tf34063_pin_parasite_c=3p ; additional parasitic capacitance for pins 3, 5 and 7 to pin 4
+.param tf34063_vcc_parasite_c=100p ; vcc parasitic capacitance (pins 6 to 4)
+.param tf34063_v_start_slope=30 ; internal reference start-up "smooth slope"
+.param tf34063_v_start_1=2.6 ; start-up voltage 1 - for most circuits
+.param tf34063_v_start_2=2.7 ; start-up voltage 2 - for latch enable
+.param tf34063_big_q_bf=50 ; current gain of switch transistor
+
+***** Internal models *****
+.model tf34063_smallD D(IS=1E-15 RS=2 CJO=1E-12) ; small diode model
+.model tf34063_smallPNP PNP(IS=4E-14 BF=100 VAF=50 RB=5 RE=.5 RC=.5 CJE=1E-12 CJC=1E-12) ; small PNP model - internal
+.model tf34063_smallNPN NPN(IS=1E-14 BF=100 VAF=50 RB=5 RE=.5 RC=.5 CJE=1E-12 CJC=1E-12) ; small NPN and driver transistor model
+.model tf34063_bigNPN NPN(IS=5E-14 BF={tf34063_big_q_bf} VAF=50 RB=0.5 RE=0.05 RC=0.05 CJE=20E-12 CJC=20E-12) ; big NPN (output transistor) model
+.model tf34063_idealized_D D(Vfwd=1m Vrev=1Meg Ron=1 Roff=1Meg epsilon=0.1) ; idealized diode model for latch circuit
+.model tf34063_drop100m D(Vfwd=0.1 Vrev=0.1 Ron=1 Roff=1Meg epsilon=0.1) ; 100 mV drop model for timing comparator
+
+***** Initial conditions *****
+.ic V(cmp_dly_2)=0.75 ; for stability of simulation with no startup
+
+***** Driver and switch *****
+Qswitch1 1 switch_q_base 2 0 tf34063_bigNPN
+Qdrive1 8 drive_q_base switch_q_base 0 tf34063_smallNPN
+Rswitch1 switch_q_base 2 100
+Gpredrv1 drive_mirror 6 sw_enable 0 3m
+Qpredrv1 drive_q_base drive_mirror 6 0 tf34063_smallPNP
+Qpredrv2 drive_mirror drive_mirror 6 0 tf34063_smallPNP
+Cslow1 drive_q_base drive_mirror 10p
+Cslow2 switch_q_base 1 10p
+Rdrive1 drive_q_base switch_q_base 2k
+Rdrive2 6 driver_mirror 2k
+
+***** Pin parasitics and exposed PN junctions *****
+Cpin1 3 4 {tf34063_pin_parasite_c}
+Cpin2 7 0 {tf34063_pin_parasite_c}
+Cpin3 6 4 {tf34063_vcc_parasite_c}
+Cpin4 5 4 {tf34063_pin_parasite_c}
+Rpin1 7 N002 100
+Dpin1 4 3 tf34063_smallD
+Dpin2 3 v_ct_clamp tf34063_smallD
+Dpin3 4 8 tf34063_smallD
+Dpin4 4 1 tf34063_smallD
+Dpin5 4 switch_q_base tf34063_smallD
+Dpin6 N002 6 tf34063_smallD
+Dpin7 6 N002 tf34063_smallD
+Dpin8 0 7 tf34063_smallD
+Dpin9 4 6 tf34063_smallD
+Dpin10 4 5 tf34063_smallD
+
+***** Ipk sense and oscillator *****
+Bipk1 ipk_sense_amplified 0 V=(V(RUN_REF_1)*(0.5+0.5*tanh({tf34063_ipk_gain}*(V(6,7)-{tf34063_ipk_setpoint}))))
+Ripk1 ipk_sense_amp_filtered ipk_sense_amplified 1k
+Cipk1 ipk_sense_amp_filtered 0 20p
+Gipk1 6 3 ipk_sense_amp_filtered 0 10m
+Gosc1 6 3 run_ref_1 0 {tf34063_icharge}
+Gosc2 3 N004 run_ref_1 0 {tf34063_icharge+tf34063_idischarge}
+Qosc1 N004 qosc1_base 4 0 tf34063_smallNPN
+Dosc1 N004 3 tf34063_smallD
+Eosc2 N003 N005 0 discharge .5
+Bosc1 cmp_out_1 0 V=0.5+0.5*tanh(50000*V(3,ct_cmp))
+Rosc2 cmp_dly_1 N001 1k
+Cosc1 cmp_dly_1 0 10p
+Rosc1 disch_npn_drive qosc1_base 2k
+Bosc2 cmp_out_2 0 V=IF(V(cmp_dly_1)+0.05*V(cmp_out_2)>0.5, 1, 0)*V(run_ref_1)
+Dosc2 cmp_out_1 N001 tf34063_drop100m
+Rosc3 cmp_dly_2 cmp_out_2 1k
+Cosc2 cmp_dly_2 0 20p
+Eosc4 discharge 0 cmp_dly_2 0 1
+Eosc3 ct_cmp N003 sw_enable 0 0.05
+Eosc1 disch_npn_drive 4 discharge 0 2
+Bosc3 icharge_boost_nofilt 0 V=IF(V(3,4)>1.2, V(sw_enable_nofilt), 0)
+Rosc4 icharge_boost icharge_boost_nofilt 1k
+Cosc3 icharge_boost 0 20p
+Gosc3 6 3 icharge_boost 0 {tf34063_icharge}
+Eosc5 N005 4 run_ref_1 0 1.25
+Vosc1 v_ct_clamp 4 1.2
+
+
+***** Latch *****
+Blatch1 comp_amp_output 0 V=0.5+0.5*tanh(5000*(1.25-V(5,4)))*V(run_ref_2)
+Rlatch1 latch_rc1 comp_amp_output 1k
+Clatch1 latch_rc1 0 {tf34063_post_comp_tau/1000}
+Rlatch2 latch_q_base discharge 200
+Qlatch1 latch_rc2 latch_q_base 0 0 tf34063_smallNPN
+Dlatch1 latch_rc1 latch_rc2 tf34063_idealized_D
+Blatch2 N007 0 V=IF(V(latch_rc2)>0.5, 1, 0)*V(run_ref_2)
+Dlatch2 N007 N006 tf34063_idealized_D
+Rlatch3 latch_rc2 N006 1k
+Clatch2 latch_rc2 0 10p
+Blatch3 sw_enable_nofilt 0 V=IF(V(latch_rc2)>0.8, 1, 0)*V(run_ref_1)
+Rlatch4 sw_enable sw_enable_nofilt 1k
+Clatch3 sw_enable 0 20p
+
+***** Power related parts *****
+Rpower1 6 4 5Meg
+Gpower1 6 4 run_ref_1 0 {tf34063_iq}
+Bpower1 run_ref_1 0 V=0.5+0.5*tanh({tf34063_v_start_slope}*(V(6,4)-{tf34063_v_start_1}))
+Bpower2 run_ref_2 0 V=0.5+0.5*tanh({tf34063_v_start_slope}*(V(6,4)-{tf34063_v_start_2}))
+
+.ends
+
+
