@@ -4,7 +4,7 @@
     {
       "analysis": "TRAN",
       "commands": [
-        ".tran 1m 10m",
+        ".tran 1m 5m",
         ".kicad adjustpaths",
         ".save all",
         ".probe alli",
@@ -21,8 +21,8 @@
       "showGrid": true,
       "traces": [
         {
-          "color": "rgb(152, 78, 163)",
-          "signal": "V(Net-_Co1-Pad1_)",
+          "color": "rgb(77, 175, 74)",
+          "signal": "V(Net-_Q1-G_)",
           "trace_type": 257
         }
       ]
